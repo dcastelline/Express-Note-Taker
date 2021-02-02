@@ -1,25 +1,36 @@
+// require fs
 const fs = require('fs');
-var data = JSON.parse(fs.readFileSync("./db/db.json", "utf-8"));
+const db = require("../db/db.json");
 
-module.exports = (app) => {
-  // GET
-  app.get('/api/notes', (req, res) => res.json(data));
-  app.get('/api/notes/:id', (req, res) => {
-    res.json(data);
-  })
+// require uniqid and turns on debug messages
+module.uniqid_debug = true;
+const uniqid = require("uniqid");
 
-  // POST
-  app.post('/api/notes', (req, res) => {
-    let newNote = req.body;
-    let noteId = (data.length).toString();
-    console.log(noteId);
-    data.push(newNote);
-  
-    fs.writeFileSync('./db/db.json', JSON.stringify(data), (err) => {
-      if (err) throw (err);
-    });
-
-    res.json(data);
+// module export
+module.exports = function(app) {
+  // gets and reads db.json
+  app.get('/api/notes', function(req, res) {
+    fs.readFile('./db/db.json', (err, data) => {
+      if (err) {
+        throw err;
+      } else {
+      res.json(JSON.parse(data));
+      }
+    })
   });
+
+  // post a new note
+  app.post("/api/notes", (req, res) => {
+    fs.readFile("db/db.json", "utf8", (err, data) => {
+      if (err) {
+        throw err;
+      } else {
+        fs.writeFile("db/db.json", JSON.stringify(JSON.parse(data)), (err) => {
+          if (err) throw (err);
+          res.json(JSON.parse(data));
+        });
+      }
+    })
+  })
 
 };

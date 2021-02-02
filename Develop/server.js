@@ -1,5 +1,4 @@
-// Require fs and express
-const fs = require('fs');
+// Require express
 const express = require('express');
 
 // Tell Node creating express server
@@ -11,7 +10,7 @@ const PORT = process.env.PORT || 8080;
 // Set up express parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use("/assets", express.static("./assets"));
+app.use("/public", express.static("./public"));
 
 // Routes
 require('./routes/apiRoutes')(app);
