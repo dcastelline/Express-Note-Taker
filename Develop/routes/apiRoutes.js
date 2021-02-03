@@ -39,20 +39,16 @@ module.exports = (app) => {
     });
   });
 
-  // deleting notes
-  app.delete("/api/notes", (req, res) => {
-    res.send("delete");
-    fs.readFile('db/db.json', 'utf8', (err, data) => {
-      const note = JSON.parse(data);
-      const noteID = uniqid();
-      if (noteId === note) {
-        note.splice();
-        fs.writeFile('db/db.json', JSON.stringify(note), (err) => {
-          if (err) throw err;
-          res.json(note);
-        });
-      };
-    });
-  });
-
+  // deleting notes, doesn't work
+  // app.delete("/api/notes", (req, res) => {
+  //   const noteId = req.params.id;
+  //   res.send("delete");
+  //   fs.readFile('db/db.json', 'utf8', (err, data) => {
+  //     if (err) throw err;
+  //     fs.writeFile('db/db.json', JSON.stringify(note), (err) => {
+  //       if (err) throw err;
+  //         res.json(note);
+  //     });
+  //   });
+  // })
 };
