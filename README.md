@@ -7,11 +7,10 @@
   ## Table of Contents
   - [Usage](#usage)
   - [License](#license)
-  - [Tests](#tests)
   - [Questions](#questions)
 
   ## Usage
-  To use the Note Taker, the user can click the "Get Started" button.  This takes the user to the notes page
+  To use the Note Taker, the user can click the "Get Started" button.  This takes the user to the notes page.  Click on "Text Title" to add a title.  Click in the notes area to add a note.  Once the note has a title and text, a disc button appears in the top right.  Click the disc to save.  The note will now appear in the list on the left side of the page.  To look at a note in the list, click on the title of that note.  When a note is selected, click the pencil in the top right of the page to clear the note to write a new one.
 
   ## License
   MIT License
@@ -35,9 +34,6 @@
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
-
-  ## Tests
-  To test the program, the user needs to change directory into the Develop folder.  From the terminal, run the command "npm run test" to begin the tests.
 
   ## Questions
   If there are questions, I can be contacted via GitHub.<br>
