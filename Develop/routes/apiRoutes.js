@@ -15,7 +15,7 @@ module.exports = (app) => {
       else {
         res.json(JSON.parse(data));
       }
-    });
+    })
   });
 
   // post a new note
@@ -26,7 +26,7 @@ module.exports = (app) => {
         const note = JSON.parse(data);
         const newNote = req.body;
         const noteId = uniqid();
-        const theId = 'id';
+        const theId = "id";
 
         newNote[theId] = noteId;
         note.push(newNote);
