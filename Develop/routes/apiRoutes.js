@@ -39,4 +39,20 @@ module.exports = (app) => {
     });
   });
 
+  // deleting notes
+  app.delete("/api/notes", (req, res) => {
+    res.send("delete");
+    fs.readFile('db/db.json', 'utf8', (err, data) => {
+      const note = JSON.parse(data);
+      const noteID = uniqid();
+      if (noteId === note) {
+        note.splice();
+        fs.writeFile('db/db.json', JSON.stringify(note), (err) => {
+          if (err) throw err;
+          res.json(note);
+        });
+      };
+    });
+  });
+
 };
