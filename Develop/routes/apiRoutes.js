@@ -7,30 +7,36 @@ module.uniqid_debug = true;
 const uniqid = require("uniqid");
 
 // module export
-module.exports = function(app) {
+module.exports = (app) => {
   // gets and reads db.json
-  app.get('/api/notes', function(req, res) {
-    fs.readFile('./db/db.json', (err, data) => {
-      if (err) {
-        throw err;
-      } else {
-      res.json(JSON.parse(data));
+  app.get('/api/notes', (req, res) => {
+    fs.readFile('db/db.json', 'utf8', (err, data) => {
+      if (err) throw err;
+      else {
+        res.json(JSON.parse(data));
       }
-    })
+    });
   });
 
   // post a new note
   app.post("/api/notes", (req, res) => {
-    fs.readFile("db/db.json", "utf8", (err, data) => {
-      if (err) {
-        throw err;
-      } else {
-        fs.writeFile("db/db.json", JSON.stringify(JSON.parse(data)), (err) => {
-          if (err) throw (err);
-          res.json(JSON.parse(data));
+    fs.readFile('db/db.json', 'utf8', (err, data) => {
+      if (err) throw err;
+      else {
+        const note = JSON.parse(data);
+        const newNote = req.body;
+        const noteId = uniqid();
+        const theId = 'id';
+
+        newNote[theId] = noteId;
+        note.push(newNote);
+
+        fs.writeFile('db/db.json', JSON.stringify(note), (err) => {
+          if (err) throw err;
+          res.json(note);
         });
-      }
-    })
-  })
+      };
+    });
+  });
 
 };

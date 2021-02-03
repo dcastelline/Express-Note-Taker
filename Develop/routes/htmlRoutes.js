@@ -9,7 +9,7 @@ module.exports = (app) => {
     app.post("/notes", (req, res) => {
         res.send("post");
     });
-    // getting the html file
+    // return the html file
     app.get("/html", (req, res) => {
         res.sendFile(path.join(__dirname, "../public/index/.html"));
     });
